@@ -14,6 +14,12 @@ const addToDo = () => {
       setInput(""); // Clear input field
   }
 }
+const deleteTodo = (index) =>{
+  const newTodos = [...todos];
+  newTodos.splice(index,1); // Remove the todo by index
+  setTodos(newTodos);
+
+};
   return (
     <>
 <div>
@@ -26,7 +32,8 @@ const addToDo = () => {
 <ol>
   {todos.map((todo,index)=>
 (
-  <li key={index}>{todo}</li>
+  <li key={index}>{todo}
+  <button onClick={()=>deleteTodo(index)}>Delete</button></li>
 ))}
 </ol>
 </div>
