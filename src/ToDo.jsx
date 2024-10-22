@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-
-
+import "./ToDo.css"
 const ToDo = ()=> {
 
   const[todos, setTodos] = useState([]); // State for the list of to-dos
@@ -28,7 +27,7 @@ const deleteTodo = (index) =>{
         value={input}
         onChange={(e)=> setInput(e.target.value)}
         placeholder="Add a new task" />
-<button onClick={addToDo}>Add</button>
+<button className="add-task-button" onClick={addToDo}>Add</button>
 <ol>
   {todos.map((todo,index)=>
 (
