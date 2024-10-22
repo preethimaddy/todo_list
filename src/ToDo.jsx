@@ -5,6 +5,10 @@ const ToDo = ()=> {
   const[todos, setTodos] = useState([]); // State for the list of to-dos
   const[input, setInput] = useState(" "); // State for the input text
 
+  const [editIndex, setEditIndex] = useState([]);
+  const [editInput, setEditInput] = useState(" ");
+
+
 
    // Function to handle adding a new to-do
 const addToDo = () => {
@@ -19,6 +23,24 @@ const deleteTodo = (index) =>{
   setTodos(newTodos);
 
 };
+
+//editing the task
+
+const editData = (index) =>{
+  setEditIndex(index); // Set the task being edited
+    setEditInput(todos[index]); // Prefill the edit input with the current task value
+
+}
+
+  // Function to confirm the edit and update the to-do
+  const confirmEditTodo = () => {
+
+    const updatedTodos = [...todos];
+    updatedTodos[editIndex] = editInput; // Update the selected task with the new value
+    setTodos(updatedTodos);
+    setEditIndex(null); // Clear edit state
+    setEditInput(""); // Clear edit input field
+  }
   return (
     <>
 <div>
@@ -41,9 +63,29 @@ const deleteTodo = (index) =>{
           {todos.map((todo, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{todo}</td>
+              {/* Display an input for editing if the task is being edited */}
               <td>
-                <button onClick={() => deleteTodo(index)}>Delete</button>
+                {editIndex === index ? (
+                  <input 
+                  type="text"
+                  value={editInput}
+                  onChange={(e) => setEditInput(e.target.value)} />
+                ) : (
+                  todo
+                )}
+              </td>
+             
+              <td>
+                {editIndex === index ? (
+                  <button className="add-save-button" onClick={confirmEditTodo}>Save</button>
+                ) : (
+                  <>
+                  <button className="add-edit-button" onClick={() => editData(index)}>Edit</button>
+                  <button onClick={() => deleteTodo(index)}>Delete</button>
+                  </>
+                  
+                )}
+                
               </td>
             </tr>
           ))}
