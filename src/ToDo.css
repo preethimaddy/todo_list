@@ -45,4 +45,29 @@ h1 {
   button:hover {
     background-color: darkred;
   }
+  /* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures borders are not doubled */
+    margin-top: 20px;
+  }
+  
+  /* Style for table header (th) and table data cells (td) */
+  th, td {
+    border: 1px solid #ddd; /* This adds the border lines */
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Light background for the header */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray for alternate rows */
+  }
+  
+  tr:hover {
+    background-color: #ddd; /* Highlight row on hover */
+  }
   

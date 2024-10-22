@@ -28,13 +28,27 @@ const deleteTodo = (index) =>{
         onChange={(e)=> setInput(e.target.value)}
         placeholder="Add a new task" />
 <button className="add-task-button" onClick={addToDo}>Add</button>
-<ol>
-  {todos.map((todo,index)=>
-(
-  <li key={index}>{todo}
-  <button onClick={()=>deleteTodo(index)}>Delete</button></li>
-))}
-</ol>
+{/* Table to display tasks */}
+<table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Task</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todos.map((todo, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{todo}</td>
+              <td>
+                <button onClick={() => deleteTodo(index)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 </div>
     </>
   )
