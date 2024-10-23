@@ -73,7 +73,7 @@ const editData = (index) =>{
               <td>{index + 1}</td>
               {/* Display an input for editing if the task is being edited */}
               <td style={{ textDecoration: completed[index] ? "line-through" : "none",
-                
+                color: completed[index] ? "green" : "black"
                }}>
                 {editIndex === index ? (
                   <input 
