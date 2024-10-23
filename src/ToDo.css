@@ -58,6 +58,12 @@ h1 {
   button:hover {
     background-color: darkred;
   }
+  /* Styling for completed tasks */
+.completed-task {
+  text-decoration: line-through;
+  color: gray; /* Optional: Change color for completed tasks */
+}
+
   /* Table styles */
 table {
     width: 100%;
@@ -83,4 +89,3 @@ table {
   tr:hover {
     background-color: #ddd; /* Highlight row on hover */
   }
-  

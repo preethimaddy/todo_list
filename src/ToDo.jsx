@@ -7,7 +7,7 @@ const ToDo = ()=> {
 
   const [editIndex, setEditIndex] = useState([]);
   const [editInput, setEditInput] = useState(" ");
-
+const[completed, setCompleted] = useState([])
 
 
    // Function to handle adding a new to-do
@@ -32,15 +32,23 @@ const editData = (index) =>{
 
 }
 
-  // Function to confirm the edit and update the to-do
-  const confirmEditTodo = () => {
-
+   // Function to confirm the edit and update the to-do
+   const confirmEditTodo = () => {
     const updatedTodos = [...todos];
     updatedTodos[editIndex] = editInput; // Update the selected task with the new value
     setTodos(updatedTodos);
     setEditIndex(null); // Clear edit state
     setEditInput(""); // Clear edit input field
-  }
+  };
+
+  // Function to toggle task completion
+  const toggleCompletion = (index) => {
+    setCompleted((prev) => {
+      const newCompleted = [...prev];
+      newCompleted[index] = !newCompleted[index]; // Toggle completion state
+      return newCompleted;
+    });
+  };
   return (
     <>
 <div>
@@ -64,7 +72,9 @@ const editData = (index) =>{
             <tr key={index}>
               <td>{index + 1}</td>
               {/* Display an input for editing if the task is being edited */}
-              <td>
+              <td style={{ textDecoration: completed[index] ? "line-through" : "none",
+                
+               }}>
                 {editIndex === index ? (
                   <input 
                   type="text"
@@ -74,18 +84,26 @@ const editData = (index) =>{
                   todo
                 )}
               </td>
-             
               <td>
+                  {/* Checkbox to toggle completion */}
+                  <input
+                    type="checkbox"
+                    checked={completed[index]}
+                    onChange={() => toggleCompletion(index)}
+                  />
+                
+              
                 {editIndex === index ? (
                   <button className="add-save-button" onClick={confirmEditTodo}>Save</button>
                 ) : (
                   <>
                   <button className="add-edit-button" onClick={() => editData(index)}>Edit</button>
                   <button onClick={() => deleteTodo(index)}>Delete</button>
+                 
                   </>
                   
                 )}
-                
+              
               </td>
             </tr>
           ))}
